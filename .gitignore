@@ -1,0 +1,10 @@
+build/
+dist/
+venv/
+.idea
+.env
+
+# standard python exceptions.
+*.pyc
+*.pyo
+*.pyd
