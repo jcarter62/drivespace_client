@@ -26,26 +26,29 @@ if __name__ == '__main__':
         # get drive information lines
         driveinfo = []
         for line in f.readlines():
-            if line.startswith("    "):
-                drv = line.strip()
-                # driveinfo.append(line.strip())
-                totalGB = float(drv[42:53])
-                freeGB = float(drv[56:64])
-                used = totalGB - freeGB
-                usedpct = round(used / totalGB * 100, 2)
-                freepct = round(freeGB / totalGB * 100, 2)
-                driveinfo.append({
-                    "drive": drv[0:1].strip(),
-                    "type": drv[3:13].strip(),
-                    "format": drv[14:20].strip(),
-                    "name": drv[25:35].strip(),
-                    "total": totalGB,
-                    "free": freeGB,
-                    "used": used,
-                    "usedpct": usedpct,
-                    "freepct": freepct,
-                    "serial": "",
-                })
+            try:
+                if line.startswith("    "):
+                    drv = line.strip()
+                    # driveinfo.append(line.strip())
+                    totalGB = float(drv[42:53])
+                    freeGB = float(drv[56:64])
+                    used = totalGB - freeGB
+                    usedpct = round(used / totalGB * 100, 2)
+                    freepct = round(freeGB / totalGB * 100, 2)
+                    driveinfo.append({
+                        "drive": drv[0:1].strip(),
+                        "type": drv[3:13].strip(),
+                        "format": drv[14:20].strip(),
+                        "name": drv[25:35].strip(),
+                        "total": totalGB,
+                        "free": freeGB,
+                        "used": used,
+                        "usedpct": usedpct,
+                        "freepct": freepct,
+                        "serial": "",
+                    })
+            except:
+                pass
 
     systeminfo["drives"] = driveinfo
 
